@@ -5,6 +5,7 @@
  */
 package dao;
 
+import com.sm.storemanagerfx.dao.CustomerDAO;
 import com.sm.storemanagerfx.util.InputValidator.InvalidInputException;
 import org.junit.Test;
 

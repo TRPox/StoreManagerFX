@@ -6,7 +6,7 @@
 package dao;
 
 import com.sm.storemanagerfx.util.InputValidator;
-import dao.EmployeeDAO.EmployeeNotFoundException;
+import com.sm.storemanagerfx.dao.EmployeeDAO.EmployeeNotFoundException;
 import org.junit.Test;
 
 /**

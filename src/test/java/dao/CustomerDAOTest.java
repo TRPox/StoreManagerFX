@@ -5,6 +5,7 @@
  */
 package dao;
 
+import com.sm.storemanagerfx.dao.CustomerDAO;
 import org.junit.Before;
 
 /**

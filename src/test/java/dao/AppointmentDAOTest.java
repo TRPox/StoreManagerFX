@@ -5,6 +5,7 @@
  */
 package dao;
 
+import com.sm.storemanagerfx.dao.AppointmentDAO;
 import org.junit.Before;
 
 /**

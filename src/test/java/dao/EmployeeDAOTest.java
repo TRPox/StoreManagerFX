@@ -5,6 +5,7 @@
  */
 package dao;
 
+import com.sm.storemanagerfx.dao.EmployeeDAO;
 import org.junit.Before;
 
 /**
