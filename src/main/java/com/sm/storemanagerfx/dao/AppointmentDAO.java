@@ -35,10 +35,22 @@ public class AppointmentDAO implements IDao{
     }
     
     public List<Appointment> findAppointmentsByDate(LocalDate date) {
+        List<Appointment> matchingAppointments;
         if(InputValidator.isValid(date)) {
-            
+            matchingAppointments = findMatchingAppointmentsByDate(date);
+            return matchingAppointments;
         }
         return null;
+    }
+
+    private List<Appointment> findMatchingAppointmentsByDate(LocalDate date) {
+        List<Appointment> matchingAppointments = new ArrayList();
+        for(Appointment a : appointmentList) {
+            if(a.getStartTime().toLocalDate().equals(date)) {
+                matchingAppointments.add(a);
+            }
+        }
+        return matchingAppointments;
     }
 
     public List<Appointment> getAppointmentList() {

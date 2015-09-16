@@ -49,10 +49,10 @@ public class CustomerDAOAcceptingTest extends CustomerDAOTest {
     }
     
     private Customer createValidCustomer() {
-        customer = new Customer();
-        customer.setFirstName("validFirstName");
-        customer.setLastName("validLastName");
-        customer.setId(0);
-        return customer;
+        Customer c = new Customer();
+        c.setFirstName("validFirstName");
+        c.setLastName("validLastName");
+        c.setId(0);
+        return c;
     }
 }
