@@ -5,13 +5,14 @@
  */
 package com.sm.storemanagerfx.entity;
 
+import com.sm.storemanagerfx.interfaces.IEntity;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Sven
  */
-public class Appointment {
+public class Appointment implements IEntity{
     
     private String title;
     private Customer customer;

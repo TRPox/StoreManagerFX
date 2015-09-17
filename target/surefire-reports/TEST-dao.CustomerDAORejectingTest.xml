@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dao.CustomerDAORejectingTest" time="0" tests="3" errors="0" skipped="0" failures="0">
+<testsuite name="dao.CustomerDAORejectingTest" time="0" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\Programme\Java\jdk1.8.0_45\jre\bin"/>
@@ -61,6 +61,10 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase name="givenEmptyStrings_ShouldThrowInvalidInputException" classname="dao.CustomerDAORejectingTest" time="0"/>
+  <testcase name="givenAppointmentToRemove_shouldThrowWrongEntityException" classname="dao.CustomerDAORejectingTest" time="0"/>
+  <testcase name="givenEmployeeAsNewCustomer_shouldThrowWrongEntityException" classname="dao.CustomerDAORejectingTest" time="0"/>
   <testcase name="givenNull_ShouldThrowInvalidInputException" classname="dao.CustomerDAORejectingTest" time="0"/>
   <testcase name="givenInvalidId_shoudThrowCustomerNotFoundException" classname="dao.CustomerDAORejectingTest" time="0"/>
+  <testcase name="givenEmployeeToRemove_shouldThrowWrongEntityException" classname="dao.CustomerDAORejectingTest" time="0"/>
+  <testcase name="givenAppointmentAsNewCustomer_shouldThrowWrongEntityException" classname="dao.CustomerDAORejectingTest" time="0"/>
 </testsuite>

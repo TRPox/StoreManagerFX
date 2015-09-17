@@ -24,7 +24,7 @@ public class CustomerDAOAcceptingTest extends CustomerDAOTest {
     @Before
     public void addCustomerToDAO() {
         customer = createValidCustomer();
-        dao.getCustomerList().add(customer);
+        dao.add(customer);
     }
     
     @Test

@@ -7,6 +7,7 @@ package com.sm.storemanagerfx.dao;
 
 import com.sm.storemanagerfx.entity.Employee;
 import com.sm.storemanagerfx.interfaces.IDao;
+import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.util.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,19 @@ public class EmployeeDAO implements IDao{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void add(IEntity e) {
+        employeeList.add((Employee) e);
+    }
+
+    @Override
+    public void remove(IEntity e) {
+        employeeList.remove((Employee) e);
+    }
+    
     public List<Employee> findEmployeesByName(String firstName, String lastName) {
         if (InputValidator.isValid(firstName, lastName)) {
-            List<Employee> matchingEmployees = findMatchingEmployeesByName(firstName, lastName);
-            return matchingEmployees;
+            return findMatchingEmployeesByName(firstName, lastName);
         }
         return null;
     }
@@ -62,8 +72,12 @@ public class EmployeeDAO implements IDao{
         throw new EmployeeNotFoundException();
     }
     
-    public List<Employee> getEmployeeList() {
-        return employeeList;
+    @Override
+    public boolean isCorrectEntity(IEntity e) throws WrongEntityException{
+        if(e.getClass() != Employee.class) {
+            throw new WrongEntityException();
+        }
+        return true;
     }
     
     public class EmployeeNotFoundException extends RuntimeException {}

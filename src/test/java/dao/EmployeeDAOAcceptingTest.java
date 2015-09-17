@@ -25,7 +25,7 @@ public class EmployeeDAOAcceptingTest extends EmployeeDAOTest {
     @Before
     public void addCustomerToDAO() {
         employee = createValidEmployee();
-        dao.getEmployeeList().add(employee);
+        dao.add(employee);
     }
     
     @Test

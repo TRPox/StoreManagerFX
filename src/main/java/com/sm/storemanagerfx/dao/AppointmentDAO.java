@@ -6,7 +6,10 @@
 package com.sm.storemanagerfx.dao;
 
 import com.sm.storemanagerfx.entity.Appointment;
+import com.sm.storemanagerfx.entity.Customer;
+import com.sm.storemanagerfx.entity.Employee;
 import com.sm.storemanagerfx.interfaces.IDao;
+import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.util.InputValidator;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,8 +19,8 @@ import java.util.List;
  *
  * @author Sven
  */
-public class AppointmentDAO implements IDao{
-    
+public class AppointmentDAO implements IDao {
+
     private final List<Appointment> appointmentList;
 
     public AppointmentDAO() {
@@ -33,32 +36,73 @@ public class AppointmentDAO implements IDao{
     public void load() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void add(IEntity e) {
+            appointmentList.add((Appointment) e);
+    }
+
+    @Override
+    public void remove(IEntity e) {
+            appointmentList.remove((Appointment) e);
+    }
+
     public List<Appointment> findAppointmentsByDate(LocalDate date) {
-        List<Appointment> matchingAppointments;
-        if(InputValidator.isValid(date)) {
-            matchingAppointments = findMatchingAppointmentsByDate(date);
-            return matchingAppointments;
+        if (InputValidator.isValid(date)) {
+            return findMatchingAppointmentsByDate(date);
         }
         return null;
     }
 
     private List<Appointment> findMatchingAppointmentsByDate(LocalDate date) {
         List<Appointment> matchingAppointments = new ArrayList();
-        for(Appointment a : appointmentList) {
-            if(a.getStartTime().toLocalDate().equals(date)) {
+        for (Appointment a : appointmentList) {
+            if (a.getStartTime().toLocalDate().equals(date)) {
                 matchingAppointments.add(a);
             }
         }
         return matchingAppointments;
     }
 
-    public List<Appointment> getAppointmentList() {
-        return appointmentList;
+    public List<Appointment> findAppointmentsByCustomer(Customer customer) {
+         if (InputValidator.isValid(customer)) {
+            return findMatchingAppointmentsByCustomer(customer);
+        }
+        return null;
+    }
+
+    private List<Appointment> findMatchingAppointmentsByCustomer(Customer customer) {
+        List<Appointment> matchingAppointments = new ArrayList();
+        for (Appointment a : appointmentList) {
+            if (a.getCustomer().equals(customer)) {
+                matchingAppointments.add(a);
+            }
+        }
+        return matchingAppointments;
     }
     
-    
-    
-    
-    
+    public List<Appointment> findAppointmentsByEmployee(Employee employee) {
+         if (InputValidator.isValid(employee)) {
+            return findMatchingAppointmentsByEmployee(employee);
+        }
+        return null;
+    }
+
+    private List<Appointment> findMatchingAppointmentsByEmployee(Employee employee) {
+        List<Appointment> matchingAppointments = new ArrayList();
+        for (Appointment a : appointmentList) {
+            if (a.getEmployee().equals(employee)) {
+                matchingAppointments.add(a);
+            }
+        }
+        return matchingAppointments;
+    }
+
+    @Override
+    public boolean isCorrectEntity(IEntity e) throws WrongEntityException {
+        if (e.getClass() != Appointment.class) {
+            throw new WrongEntityException();
+        }
+        return true;
+    }
 }

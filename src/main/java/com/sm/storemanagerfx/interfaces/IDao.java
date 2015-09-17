@@ -13,5 +13,10 @@ public interface IDao {
     
     public void save();
     public void load();
+    public void add(IEntity e);
+    public void remove(IEntity e);
+    public boolean isCorrectEntity(IEntity e);
+    
+    public class WrongEntityException extends RuntimeException {}
     
 }

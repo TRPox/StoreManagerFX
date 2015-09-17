@@ -7,6 +7,7 @@ package com.sm.storemanagerfx.dao;
 
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.interfaces.IDao;
+import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.util.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,19 @@ public class CustomerDAO implements IDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void add(IEntity e) {
+        customerList.add((Customer)e);
+    }
+    
+    @Override
+    public void remove(IEntity e) {
+        customerList.remove((Customer)e);
+    }
+    
     public List<Customer> findCustomersByName(String firstName, String lastName) {
         if (InputValidator.isValid(firstName, lastName)) {
-            List<Customer> matchingCustomers = findMatchingCustomersByName(firstName, lastName);
-            return matchingCustomers;
+            return findMatchingCustomersByName(firstName, lastName);
         }
         return null;
     }
@@ -61,9 +71,13 @@ public class CustomerDAO implements IDao {
         }
         throw new CustomerNotFoundException();
     }
-
-    public List<Customer> getCustomerList() {
-        return customerList;
+    
+    @Override
+    public boolean isCorrectEntity(IEntity e) throws WrongEntityException{
+        if(e.getClass() != Customer.class) {
+            throw new WrongEntityException();
+        }
+        return true;
     }
     
     public class CustomerNotFoundException extends RuntimeException{}

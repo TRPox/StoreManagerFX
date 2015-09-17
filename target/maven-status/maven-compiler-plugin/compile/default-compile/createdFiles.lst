@@ -4,6 +4,7 @@ com\sm\storemanagerfx\interfaces\IDao.class
 com\sm\storemanagerfx\interfaces\IEntity.class
 com\sm\storemanagerfx\util\InputValidator.class
 com\sm\storemanagerfx\dao\EmployeeDAO.class
+com\sm\storemanagerfx\interfaces\IDao$WrongEntityException.class
 com\sm\storemanagerfx\dao\CustomerDAO$CustomerNotFoundException.class
 com\sm\storemanagerfx\dao\AppointmentDAO.class
 com\sm\storemanagerfx\entity\Person.class
