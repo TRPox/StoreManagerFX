@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
  *
  * @author Sven
  */
-public class Appointment implements IEntity{
-    
+public class Appointment implements IEntity {
+
     private String title;
     private Customer customer;
     private Employee employee;
@@ -59,6 +59,17 @@ public class Appointment implements IEntity{
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
-    
-    
+
+    public boolean collidesWith(Appointment appointment) {
+        return dateTimeCollidesWithAppointment(startTime, appointment)
+                || dateTimeCollidesWithAppointment(endTime, appointment)
+                || dateTimeCollidesWithAppointment(appointment.getStartTime(), this)
+                || dateTimeCollidesWithAppointment(appointment.getEndTime(), this);
+    }
+
+    private boolean dateTimeCollidesWithAppointment(LocalDateTime dateTime, Appointment appointment) {
+        return (dateTime.isAfter(appointment.getStartTime()) || dateTime.isEqual(appointment.getStartTime()))
+                && ((dateTime).isBefore(appointment.getEndTime()) || dateTime.isEqual(appointment.getEndTime()));
+    }
+
 }

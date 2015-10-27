@@ -8,15 +8,12 @@ package com.sm.storemanagerfx.interfaces;
 /**
  *
  * @author Sven
+ * @param <T>
  */
-public interface IDao {
+public interface IDao<T extends IEntity> {
     
     public void save();
     public void load();
-    public void add(IEntity e);
-    public void remove(IEntity e);
-    public boolean isCorrectEntity(IEntity e);
-    
-    public class WrongEntityException extends RuntimeException {}
-    
+    public void add(T e);
+    public void remove(T e);
 }

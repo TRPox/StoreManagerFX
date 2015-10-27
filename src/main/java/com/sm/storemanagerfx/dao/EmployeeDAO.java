@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Sven
  */
-public class EmployeeDAO implements IDao{
+public class EmployeeDAO implements IDao<Employee>{
 
     private final List<Employee> employeeList;
 
@@ -35,13 +35,13 @@ public class EmployeeDAO implements IDao{
     }
 
     @Override
-    public void add(IEntity e) {
-        employeeList.add((Employee) e);
+    public void add(Employee e) {
+        employeeList.add(e);
     }
 
     @Override
-    public void remove(IEntity e) {
-        employeeList.remove((Employee) e);
+    public void remove(Employee e) {
+        employeeList.remove(e);
     }
     
     public List<Employee> findEmployeesByName(String firstName, String lastName) {
@@ -71,14 +71,6 @@ public class EmployeeDAO implements IDao{
         }
         throw new EmployeeNotFoundException();
     }
-    
-    @Override
-    public boolean isCorrectEntity(IEntity e) throws WrongEntityException{
-        if(e.getClass() != Employee.class) {
-            throw new WrongEntityException();
-        }
-        return true;
-    }
-    
+
     public class EmployeeNotFoundException extends RuntimeException {}
     }

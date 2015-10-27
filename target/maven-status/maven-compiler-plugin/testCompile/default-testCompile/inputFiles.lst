@@ -6,4 +6,6 @@ G:\Programming\Java\StoreManagerFX\src\test\java\dao\AppointmentDAORejectingTest
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\AppointmentDAOTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\CustomerDAOAcceptingTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\EmployeeDAOAcceptingTest.java
+G:\Programming\Java\StoreManagerFX\src\test\java\entity\AppointmentTest.java
+G:\Programming\Java\StoreManagerFX\src\test\java\interactor\CustomerInteractorRequestTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\AppointmentDAOAcceptingTest.java

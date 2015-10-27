@@ -9,7 +9,6 @@ import com.sm.storemanagerfx.entity.Appointment;
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.entity.Employee;
 import com.sm.storemanagerfx.interfaces.IDao;
-import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.util.InputValidator;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
  *
  * @author Sven
  */
-public class AppointmentDAO implements IDao {
+public class AppointmentDAO implements IDao<Appointment> {
 
     private final List<Appointment> appointmentList;
 
@@ -38,13 +37,13 @@ public class AppointmentDAO implements IDao {
     }
 
     @Override
-    public void add(IEntity e) {
-            appointmentList.add((Appointment) e);
+    public void add(Appointment e) {
+            appointmentList.add(e);
     }
 
     @Override
-    public void remove(IEntity e) {
-            appointmentList.remove((Appointment) e);
+    public void remove(Appointment e) {
+            appointmentList.remove(e);
     }
 
     public List<Appointment> findAppointmentsByDate(LocalDate date) {
@@ -96,13 +95,5 @@ public class AppointmentDAO implements IDao {
             }
         }
         return matchingAppointments;
-    }
-
-    @Override
-    public boolean isCorrectEntity(IEntity e) throws WrongEntityException {
-        if (e.getClass() != Appointment.class) {
-            throw new WrongEntityException();
-        }
-        return true;
     }
 }

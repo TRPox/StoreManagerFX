@@ -7,7 +7,6 @@ package com.sm.storemanagerfx.dao;
 
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.interfaces.IDao;
-import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.util.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
  *
  * @author Sven
  */
-public class CustomerDAO implements IDao {
+public class CustomerDAO implements IDao<Customer> {
 
     private final List<Customer> customerList;
 
@@ -35,13 +34,13 @@ public class CustomerDAO implements IDao {
     }
 
     @Override
-    public void add(IEntity e) {
-        customerList.add((Customer)e);
+    public void add(Customer e) {
+        customerList.add(e);
     }
     
     @Override
-    public void remove(IEntity e) {
-        customerList.remove((Customer)e);
+    public void remove(Customer e) {
+        customerList.remove(e);
     }
     
     public List<Customer> findCustomersByName(String firstName, String lastName) {
@@ -70,14 +69,6 @@ public class CustomerDAO implements IDao {
             }
         }
         throw new CustomerNotFoundException();
-    }
-    
-    @Override
-    public boolean isCorrectEntity(IEntity e) throws WrongEntityException{
-        if(e.getClass() != Customer.class) {
-            throw new WrongEntityException();
-        }
-        return true;
     }
     
     public class CustomerNotFoundException extends RuntimeException{}
