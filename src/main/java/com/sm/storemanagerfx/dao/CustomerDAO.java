@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author Sven
  */
+
 public class CustomerDAO implements IDao<Customer> {
 
     private final List<Customer> customerList;
@@ -47,7 +48,7 @@ public class CustomerDAO implements IDao<Customer> {
         if (InputValidator.isValid(firstName, lastName)) {
             return findMatchingCustomersByName(firstName, lastName);
         }
-        return null;
+        return new ArrayList();
     }
 
     private List<Customer> findMatchingCustomersByName(String firstName, String lastName) {

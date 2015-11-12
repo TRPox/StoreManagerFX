@@ -38,19 +38,30 @@ public class AppointmentDAO implements IDao<Appointment> {
 
     @Override
     public void add(Appointment e) {
-            appointmentList.add(e);
+        appointmentList.add(e);
     }
 
     @Override
     public void remove(Appointment e) {
-            appointmentList.remove(e);
+        appointmentList.remove(e);
+    }
+
+    public Appointment findAppointmentById(int id) {
+        if (InputValidator.isValid(id)) {
+            for (Appointment a : appointmentList) {
+                if (a.getId() == id) {
+                    return a;
+                }
+            }
+        }
+        throw new AppointmentNotFoundException();
     }
 
     public List<Appointment> findAppointmentsByDate(LocalDate date) {
         if (InputValidator.isValid(date)) {
             return findMatchingAppointmentsByDate(date);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     private List<Appointment> findMatchingAppointmentsByDate(LocalDate date) {
@@ -64,10 +75,10 @@ public class AppointmentDAO implements IDao<Appointment> {
     }
 
     public List<Appointment> findAppointmentsByCustomer(Customer customer) {
-         if (InputValidator.isValid(customer)) {
+        if (InputValidator.isValid(customer)) {
             return findMatchingAppointmentsByCustomer(customer);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     private List<Appointment> findMatchingAppointmentsByCustomer(Customer customer) {
@@ -79,12 +90,12 @@ public class AppointmentDAO implements IDao<Appointment> {
         }
         return matchingAppointments;
     }
-    
+
     public List<Appointment> findAppointmentsByEmployee(Employee employee) {
-         if (InputValidator.isValid(employee)) {
+        if (InputValidator.isValid(employee)) {
             return findMatchingAppointmentsByEmployee(employee);
         }
-        return null;
+        return new ArrayList<>();
     }
 
     private List<Appointment> findMatchingAppointmentsByEmployee(Employee employee) {
@@ -95,5 +106,8 @@ public class AppointmentDAO implements IDao<Appointment> {
             }
         }
         return matchingAppointments;
+    }
+
+    public static class AppointmentNotFoundException extends RuntimeException {
     }
 }

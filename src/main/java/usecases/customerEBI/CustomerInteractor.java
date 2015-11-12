@@ -5,41 +5,53 @@
  */
 package usecases.customerEBI;
 
+import com.sm.storemanagerfx.dao.CustomerDAO;
 import com.sm.storemanagerfx.entity.Customer;
-import com.sm.storemanagerfx.interfaces.IEntity;
-import com.sm.storemanagerfx.interfaces.IRequestModel;
+import com.sm.storemanagerfx.interfaces.ICustomerRequestBoundary;
 import com.sm.storemanagerfx.interfaces.IResponseModel;
-import com.sm.storemanagerfx.interfaces.impl.AddedEntityRequestModel;
 import com.sm.storemanagerfx.interfaces.impl.BaseInteractor;
-import com.sm.storemanagerfx.util.InputValidator;
+import java.util.List;
 
 /**
  *
  * @author Sven
  */
-public class CustomerInteractor extends BaseInteractor<Customer>{
+public class CustomerInteractor extends BaseInteractor<Customer> implements ICustomerRequestBoundary{
 
-    @Override
-    public boolean receiveRequest(IRequestModel request) {
-        if(InputValidator.isValid(request)) {
-            request.acceptVisitor(this);
-            return true;
-        }
-        return false;
-    }
+    private CustomerDAO dao;
+
+//    @Override
+//    public boolean receiveRequest(IRequestModel request) {
+//        if (InputValidator.isValid(request)) {
+//            request.acceptVisitor(this);
+//            return true;
+//        }
+//        return false;
+//    }
 
     @Override
     public IResponseModel sendResponse() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
-    public void visit(AddedEntityRequestModel request) {
-        if(!request.isEmpty()) {
-            for(IEntity c : request.getAddedList()) {
-                dao.add(c);
-            }
+    public void addCustomers(List<Customer> addedList) {
+        for (Customer c : addedList) {
+            dao.add(c);
         }
     }
-    
+
+    public void setDao(CustomerDAO dao) {
+        this.dao = dao;
+    }
+
+    @Override
+    public void editCustomers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeCustomers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

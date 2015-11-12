@@ -14,12 +14,21 @@ import java.time.LocalDateTime;
  */
 public class Appointment implements IEntity {
 
+    private Integer id;
     private String title;
     private Customer customer;
     private Employee employee;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getTitle() {
         return title;
     }

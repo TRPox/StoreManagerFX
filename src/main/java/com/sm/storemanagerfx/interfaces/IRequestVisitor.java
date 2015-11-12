@@ -5,12 +5,13 @@
  */
 package com.sm.storemanagerfx.interfaces;
 
-import com.sm.storemanagerfx.interfaces.impl.AddedEntityRequestModel;
+import java.util.List;
 
 /**
  *
  * @author Sven
  */
-public interface IRequestVisitor {
-    public void visit(AddedEntityRequestModel request);
+public interface IRequestVisitor<T extends IEntity> {
+    public void visit(List<T> addedList);
+    
 }

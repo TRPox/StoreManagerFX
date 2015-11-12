@@ -1,3 +1,4 @@
+com\sm\storemanagerfx\util\EntityMapperTest.class
 dao\CustomerDAOTest.class
 dao\EmployeeDAORejectingTest.class
 dao\AppointmentDAOTest.class

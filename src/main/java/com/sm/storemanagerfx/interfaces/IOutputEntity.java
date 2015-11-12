@@ -9,10 +9,6 @@ package com.sm.storemanagerfx.interfaces;
  *
  * @author Sven
  */
-public interface IRequestModel extends IVisitable{
-
-    boolean isEmpty();
-    
-    public class EmptyRequestException extends RuntimeException {}
+public interface IOutputEntity {
     
 }

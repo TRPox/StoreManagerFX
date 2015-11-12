@@ -5,6 +5,7 @@
  */
 package dao;
 
+import com.sm.storemanagerfx.dao.AppointmentDAO.AppointmentNotFoundException;
 import com.sm.storemanagerfx.util.InputValidator.InvalidInputException;
 import org.junit.Test;
 
@@ -13,6 +14,11 @@ import org.junit.Test;
  * @author Sven
  */
 public class AppointmentDAORejectingTest extends AppointmentDAOTest {
+    
+    @Test(expected = AppointmentNotFoundException.class)
+    public void givenInvalidId_ShouldThrowAppointmentNotFoundException() {
+        dao.findAppointmentById(Integer.MAX_VALUE);
+    }
     
     @Test(expected = InvalidInputException.class)
     public void givenNullasDate_shouldThrowInvalidInputException() {

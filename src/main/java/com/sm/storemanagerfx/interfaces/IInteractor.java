@@ -9,7 +9,6 @@ package com.sm.storemanagerfx.interfaces;
  *
  * @author Sven
  */
-public interface IInteractor extends IRequestBoundary{
-
+public interface IInteractor {
     IResponseModel sendResponse();
 }

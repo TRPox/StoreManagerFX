@@ -7,7 +7,6 @@ package com.sm.storemanagerfx.dao;
 
 import com.sm.storemanagerfx.entity.Employee;
 import com.sm.storemanagerfx.interfaces.IDao;
-import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.util.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.List;
  *
  * @author Sven
  */
+
 public class EmployeeDAO implements IDao<Employee>{
 
     private final List<Employee> employeeList;

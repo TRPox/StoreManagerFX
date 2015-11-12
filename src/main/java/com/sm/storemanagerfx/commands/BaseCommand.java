@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sm.storemanagerfx.interfaces;
+package com.sm.storemanagerfx.commands;
 
 /**
  *
  * @author Sven
  */
-public interface IRequestBoundary extends IRequestVisitor{
-    public boolean receiveRequest(IRequestModel request);
+public interface BaseCommand {
+    public void execute();
+    public void undo();
 }

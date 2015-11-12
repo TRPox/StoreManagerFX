@@ -5,7 +5,6 @@
  */
 package com.sm.storemanagerfx.interfaces.impl;
 
-import com.sm.storemanagerfx.interfaces.IDao;
 import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.interfaces.IInteractor;
 import com.sm.storemanagerfx.interfaces.IResponseBoundary;
@@ -14,17 +13,9 @@ import com.sm.storemanagerfx.interfaces.IResponseBoundary;
  *
  * @author Sven
  */
-public abstract class BaseInteractor<T extends IEntity> implements IInteractor{
-    protected IDao<T> dao;
+public abstract class BaseInteractor<T extends IEntity> implements IInteractor {
+
     protected IResponseBoundary controller;
-
-    public IDao getDao() {
-        return dao;
-    }
-
-    public void setDao(IDao dao) {
-        this.dao = dao;
-    }
 
     public IResponseBoundary getController() {
         return controller;
