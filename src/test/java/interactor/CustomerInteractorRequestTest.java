@@ -8,7 +8,7 @@ package interactor;
 import com.sm.storemanagerfx.dao.CustomerDAO;
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.requests.IRequestModel.EmptyRequestException;
-import com.sm.storemanagerfx.interfaces.AddedEntityRequestModel;
+import com.sm.storemanagerfx.interfaces.impl.AddedEntityRequestModel;
 import com.sm.storemanagerfx.util.InputValidator.InvalidInputException;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.junit.MatcherAssert.assertThat;

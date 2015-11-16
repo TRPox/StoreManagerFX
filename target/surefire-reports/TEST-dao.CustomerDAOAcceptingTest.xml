@@ -62,6 +62,6 @@
   </properties>
   <testcase name="givenValidInput_shouldReturnList" classname="dao.CustomerDAOAcceptingTest" time="0"/>
   <testcase name="givenValidInput_shouldReturnListWithMatches" classname="dao.CustomerDAOAcceptingTest" time="0"/>
-  <testcase name="givenValidId_shouldReturnCustomer" classname="dao.CustomerDAOAcceptingTest" time="0.001"/>
-  <testcase name="givenValidInputWithNoMatch_shouldReturnEmptyList" classname="dao.CustomerDAOAcceptingTest" time="0"/>
+  <testcase name="givenValidId_shouldReturnCustomer" classname="dao.CustomerDAOAcceptingTest" time="0"/>
+  <testcase name="givenValidInputWithNoMatch_shouldReturnEmptyList" classname="dao.CustomerDAOAcceptingTest" time="0.001"/>
 </testsuite>

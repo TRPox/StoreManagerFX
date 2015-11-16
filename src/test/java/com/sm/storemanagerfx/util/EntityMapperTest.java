@@ -5,12 +5,9 @@
  */
 package com.sm.storemanagerfx.util;
 
-import com.sm.storemanagerfx.entity.Address;
 import com.sm.storemanagerfx.entity.Customer;
-import com.sm.storemanagerfx.outputentity.OutputAppointment;
-import com.sm.storemanagerfx.outputentity.OutputCustomer;
+import com.sm.storemanagerfx.outputentity.OutputPerson;
 import com.sm.storemanagerfx.util.InputValidator.InvalidInputException;
-import java.time.LocalDate;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
@@ -36,18 +33,17 @@ public class EntityMapperTest {
     }
     
     @Test
-    public void givenOutputCustomer_shouldReturnCustomer() {
-        OutputCustomer oc = createOutputCustomer();
+    public void givenOutputPerson_shouldReturnCustomer() {
+        OutputPerson oc = createOutputPerson();
         assertThat(EntityMapper.mapToCustomer(oc), is(instanceOf(Customer.class)));
     }
 
     @Test
-    public void givenOutputCustomer_shouldMapToEqualCustomer() {
-        OutputCustomer oc = createOutputCustomer();
+    public void givenOutputPerson_shouldMapToEqualCustomer() {
+        OutputPerson oc = createOutputPerson();
         Customer c = EntityMapper.mapToCustomer(oc);
         assertThat(c.getFirstName(), equalTo(oc.getFirstName()));
         assertThat(c.getLastName(), equalTo(oc.getLastName()));
-        assertThat(c.getBirthday(), equalTo(oc.getBirthday()));
         assertThat(c.getId(), equalTo(oc.getId()));
     }
     
@@ -62,15 +58,11 @@ public class EntityMapperTest {
 //        fail("The test case is a prototype.");
 //    }
 
-    private OutputCustomer createOutputCustomer() {
-        OutputCustomer oc = new OutputCustomer();
+    private OutputPerson createOutputPerson() {
+        OutputPerson oc = new OutputPerson();
         oc.setFirstName("First");
         oc.setLastName("Last");
-        oc.setBirthday(LocalDate.of(2015, 1, 1));
         oc.setId(1);
-        oc.setAddress(new Address());
-        oc.setNextAppointment(new OutputAppointment());
-        oc.setLastAppointment(new OutputAppointment());
         return oc;
     }
     

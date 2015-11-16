@@ -8,7 +8,7 @@ package com.sm.storemanagerfx.util;
 import com.sm.storemanagerfx.entity.Appointment;
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.outputentity.OutputAppointment;
-import com.sm.storemanagerfx.outputentity.OutputCustomer;
+import com.sm.storemanagerfx.outputentity.OutputPerson;
 import static com.sm.storemanagerfx.util.InputValidator.isValid;
 
 /**
@@ -17,16 +17,12 @@ import static com.sm.storemanagerfx.util.InputValidator.isValid;
  */
 public class EntityMapper {
 
-    public static Customer mapToCustomer(OutputCustomer oc) {
+    public static Customer mapToCustomer(OutputPerson oc) {
         if (isValid(oc)) {
             Customer c = new Customer();
-            c.setAddress(oc.getAddress());
-            c.setBirthday(oc.getBirthday());
             c.setFirstName(oc.getFirstName());
             c.setId(oc.getId());
-            c.setLastAppointment(mapToAppointment(oc.getLastAppointment()));
             c.setLastName(oc.getLastName());
-            c.setNextAppointment(mapToAppointment(oc.getNextAppointment()));
             return c;
         }
         return null;

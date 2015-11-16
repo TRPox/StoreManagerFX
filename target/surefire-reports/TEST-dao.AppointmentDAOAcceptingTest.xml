@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dao.AppointmentDAOAcceptingTest" time="0.051" tests="6" errors="0" skipped="0" failures="0">
+<testsuite name="dao.AppointmentDAOAcceptingTest" time="0.071" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\Programme\Java\jdk1.8.0_45\jre\bin"/>
@@ -60,10 +60,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="givenValidCustomer_shouldReturnList" classname="dao.AppointmentDAOAcceptingTest" time="0"/>
+  <testcase name="givenValidCustomer_shouldReturnList" classname="dao.AppointmentDAOAcceptingTest" time="0.019"/>
   <testcase name="givenValidCustomer_shouldReturnListWithMatches" classname="dao.AppointmentDAOAcceptingTest" time="0"/>
   <testcase name="givenValidDateWithNoMatches_shouldReturnEmptyList" classname="dao.AppointmentDAOAcceptingTest" time="0"/>
   <testcase name="givenValidDate_shouldReturnListWithMatches" classname="dao.AppointmentDAOAcceptingTest" time="0"/>
-  <testcase name="givenValidDate_shouldReturnList" classname="dao.AppointmentDAOAcceptingTest" time="0.051"/>
+  <testcase name="givenValidDate_shouldReturnList" classname="dao.AppointmentDAOAcceptingTest" time="0.052"/>
   <testcase name="givenValidCustomerWithNoMatches_shouldReturnEmptyList" classname="dao.AppointmentDAOAcceptingTest" time="0"/>
 </testsuite>
