@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: entity.AppointmentTest
+Test set: commands.AddCustomerCommandTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec - in entity.AppointmentTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec - in commands.AddCustomerCommandTest

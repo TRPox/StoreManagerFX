@@ -5,6 +5,7 @@
  */
 package com.sm.storemanagerfx.interfaces.impl;
 
+import com.sm.storemanagerfx.commands.CommandFactory;
 import com.sm.storemanagerfx.interfaces.IEntity;
 import com.sm.storemanagerfx.interfaces.IInteractor;
 import com.sm.storemanagerfx.interfaces.IResponseBoundary;
@@ -16,7 +17,8 @@ import com.sm.storemanagerfx.interfaces.IResponseBoundary;
 public abstract class BaseInteractor<T extends IEntity> implements IInteractor {
 
     protected IResponseBoundary controller;
-
+    protected CommandFactory commandFactory;
+    
     public IResponseBoundary getController() {
         return controller;
     }

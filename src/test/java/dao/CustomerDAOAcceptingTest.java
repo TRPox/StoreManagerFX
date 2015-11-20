@@ -45,14 +45,13 @@ public class CustomerDAOAcceptingTest extends CustomerDAOTest {
     
     @Test
     public void givenValidId_shouldReturnCustomer() {
-        assertThat(dao.findCustomerById(0), equalTo(customer));
+        assertThat(dao.findCustomerById(1), equalTo(customer));
     }
     
     private Customer createValidCustomer() {
         Customer c = new Customer();
         c.setFirstName("validFirstName");
         c.setLastName("validLastName");
-        c.setId(0);
         return c;
     }
 }

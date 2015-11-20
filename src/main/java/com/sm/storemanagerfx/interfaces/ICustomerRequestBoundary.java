@@ -5,8 +5,7 @@
  */
 package com.sm.storemanagerfx.interfaces;
 
-import com.sm.storemanagerfx.entity.Customer;
-import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public interface ICustomerRequestBoundary {
 //    public boolean receiveRequest(IRequestModel request);
-    public void addCustomers(List<Customer> addedList);
-    public void editCustomers();
-    public void removeCustomers();
+    public void addCustomer(Map<String, Object> dataMap);
+    public void editCustomer();
+    public void removeCustomer();
 }

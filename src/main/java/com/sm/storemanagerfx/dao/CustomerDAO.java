@@ -15,13 +15,16 @@ import java.util.List;
  *
  * @author Sven
  */
-
 public class CustomerDAO implements IDao<Customer> {
 
     private final List<Customer> customerList;
+    private final List<Integer> unusedIDs;
+    private int currentHighestID;
 
     public CustomerDAO() {
         customerList = new ArrayList();
+        unusedIDs = new ArrayList();
+        currentHighestID = 0;
     }
 
     @Override
@@ -36,14 +39,33 @@ public class CustomerDAO implements IDao<Customer> {
 
     @Override
     public void add(Customer e) {
-        customerList.add(e);
+        int customerID = findUnusedID();
+        e.setId(customerID);
+        this.customerList.add(e);
+    }
+
+    private int findUnusedID() {
+        if (unusedIDs.isEmpty()) {
+            return this.currentHighestID + 1;
+        } else {
+            return this.unusedIDs.get(0);
+        }
     }
     
+    private void incrementCurrentHighestID() {
+        this.currentHighestID++;
+    }
+
     @Override
     public void remove(Customer e) {
-        customerList.remove(e);
+        addToUnusedIDs(e.getId());
+        this.customerList.remove(e);
     }
     
+    private void addToUnusedIDs(int id) {
+        this.unusedIDs.add(id);
+    }
+
     public List<Customer> findCustomersByName(String firstName, String lastName) {
         if (InputValidator.isValid(firstName, lastName)) {
             return findMatchingCustomersByName(firstName, lastName);
@@ -71,6 +93,7 @@ public class CustomerDAO implements IDao<Customer> {
         }
         throw new CustomerNotFoundException();
     }
-    
-    public class CustomerNotFoundException extends RuntimeException{}
+
+    public class CustomerNotFoundException extends RuntimeException {
+    }
 }

@@ -6,6 +6,8 @@
 package com.sm.storemanagerfx.commands;
 
 import com.sm.storemanagerfx.dao.CustomerDAO;
+import com.sm.storemanagerfx.entity.Appointment;
+import com.sm.storemanagerfx.entity.Customer;
 
 /**
  *
@@ -13,13 +15,13 @@ import com.sm.storemanagerfx.dao.CustomerDAO;
  */
 public class CommandFactory {
 
-    private static CustomerDAO customerDAO;
+    private static PersonCommandFactory personCommandFactory;
 
     public CommandFactory(CustomerDAO customerDAO) {
-        CommandFactory.customerDAO = customerDAO;
+        CommandFactory.personCommandFactory = new PersonCommandFactory(customerDAO);
     }
-
-    public static BaseCommand createCommand(CommandType type) {
+    
+    public BaseCommand createCommand(CommandType type, Appointment appointment) {
         switch (type) {
             case ADD:
                 return createAddCommand();
@@ -32,19 +34,33 @@ public class CommandFactory {
         }
     }
 
-    private static BaseCommand createAddCommand() {
+    public BaseCommand createCommand(CommandType type, Customer entity) {
+        switch (type) {
+            case ADD:
+                return personCommandFactory.createAddCustomerCommand(entity);
+            case EDIT:
+                return personCommandFactory.createEditCustomerCommand(entity);
+            case REMOVE:
+                return personCommandFactory.createRemoveCustomerCommand(entity);
+            default:
+                throw new InvalidCommandTypeException();
+        }
+        
+    }
+
+    private BaseCommand createAddCommand() {
         return null;
     }
     
-    private static BaseCommand createEditCommand() {
+    private BaseCommand createEditCommand() {
         return null;
     }
     
-    private static BaseCommand createRemoveCommand() {
+    private BaseCommand createRemoveCommand() {
         return null;
     }
     
-    public static class InvalidCommandTypeException extends RuntimeException {
+    public class InvalidCommandTypeException extends RuntimeException {
 
         public InvalidCommandTypeException() {
         }
@@ -54,6 +70,8 @@ public class CommandFactory {
 
         ADD,
         EDIT,
-        REMOVE
+        REMOVE,
+        ADD_IGNORE_COLLISION,
+        EDIT_IGNORE_COLLISION
     }
 }

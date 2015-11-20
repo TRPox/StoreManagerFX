@@ -11,8 +11,7 @@ package com.sm.storemanagerfx.requests;
  */
 public interface IRequestModel {
 
-    boolean isEmpty();
-    
-    public class EmptyRequestException extends RuntimeException {}
+    void setId(int id);
+    int getId();
     
 }
