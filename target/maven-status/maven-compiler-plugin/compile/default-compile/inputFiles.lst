@@ -20,6 +20,7 @@ G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\commands\
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\interfaces\IResponseModel.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\interfaces\IResponseBoundary.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\outputentity\OutputAppointment.java
+G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\commands\RemoveEntityCommand.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\entity\Person.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\interfaces\impl\BaseInteractor.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\util\InputValidator.java
@@ -28,5 +29,6 @@ G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\util\Enti
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\dao\MasterDAO.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\commands\AddCustomerCommand.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\interfaces\IVisitable.java
+G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\commands\RemoveCustomerCommand.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\interfaces\impl\AddedEntityRequestModel.java
 G:\Programming\Java\StoreManagerFX\src\main\java\com\sm\storemanagerfx\interfaces\IOutputEntity.java

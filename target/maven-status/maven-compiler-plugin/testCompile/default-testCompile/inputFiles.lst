@@ -9,6 +9,7 @@ G:\Programming\Java\StoreManagerFX\src\test\java\dao\EmployeeDAORejectingTest.ja
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\CustomerDAOTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\com\sm\storemanagerfx\util\EntityMapperTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\EmployeeDAOTest.java
+G:\Programming\Java\StoreManagerFX\src\test\java\commands\RemoveEntityCommandTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\AppointmentDAORejectingTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\CustomerDAOAcceptingTest.java
 G:\Programming\Java\StoreManagerFX\src\test\java\dao\AppointmentDAOAcceptingTest.java

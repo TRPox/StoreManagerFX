@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sm.storemanagerfx.interfaces;
+package com.sm.storemanagerfx.commands;
 
 /**
  *
  * @author Sven
- * @param <T>
  */
-public interface IDao<T extends IEntity> {
-    
-    public void save();
-    public void load();
-    public void add(T e);
-    public void remove(int id);
+public abstract class RemoveEntityCommand implements BaseCommand {
+
+    protected int id;
+
+    public RemoveEntityCommand(int id) {
+        this.id = id;
+    }
 }

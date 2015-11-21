@@ -7,7 +7,7 @@ package com.sm.storemanagerfx.dao;
 
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.interfaces.IDao;
-import com.sm.storemanagerfx.util.InputValidator;
+import static com.sm.storemanagerfx.util.InputValidator.isValid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,29 +45,35 @@ public class CustomerDAO implements IDao<Customer> {
     }
 
     private int findUnusedID() {
-        if (unusedIDs.isEmpty()) {
+        if (this.unusedIDs.isEmpty()) {
             return this.currentHighestID + 1;
         } else {
             return this.unusedIDs.get(0);
         }
     }
-    
+
     private void incrementCurrentHighestID() {
         this.currentHighestID++;
     }
 
     @Override
-    public void remove(Customer e) {
-        addToUnusedIDs(e.getId());
-        this.customerList.remove(e);
+    public void remove(int id) {
+        for(Customer c : customerList) {
+            if(c.getId() == id) {
+                this.customerList.remove(c);
+                addToUnusedIDs(id);
+                return;
+            }
+        }
+        throw new CustomerNotFoundException();
     }
-    
+
     private void addToUnusedIDs(int id) {
         this.unusedIDs.add(id);
     }
 
     public List<Customer> findCustomersByName(String firstName, String lastName) {
-        if (InputValidator.isValid(firstName, lastName)) {
+        if (isValid(firstName, lastName)) {
             return findMatchingCustomersByName(firstName, lastName);
         }
         return new ArrayList();
@@ -75,17 +81,17 @@ public class CustomerDAO implements IDao<Customer> {
 
     private List<Customer> findMatchingCustomersByName(String firstName, String lastName) {
         List<Customer> matchingCustomers = new ArrayList();
-        for (Customer c : customerList) {
-            if (c.getFirstName().equals(firstName) && c.getLastName().equals(lastName)) {
-                matchingCustomers.add(c);
-            }
+        for (Customer c : this.customerList) {
+                if (c.getFirstName().equals(firstName) && c.getLastName().equals(lastName)) {
+                    matchingCustomers.add(c);
+                }
         }
         return matchingCustomers;
     }
 
     public Customer findCustomerById(int id) throws CustomerNotFoundException {
-        if (InputValidator.isValid(id)) {
-            for (Customer c : customerList) {
+        if (isValid(id)) {
+            for (Customer c : this.customerList) {
                 if (c.getId().equals(id)) {
                     return c;
                 }

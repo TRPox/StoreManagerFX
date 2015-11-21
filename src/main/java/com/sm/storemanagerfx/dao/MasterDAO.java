@@ -38,7 +38,7 @@ public class MasterDAO {
     }
 
     public void remove(Customer customer) {
-        customerDAO.remove(customer);
+//        customerDAO.remove(customer);
     }
 
     public void add(Appointment appointment) {
@@ -46,7 +46,7 @@ public class MasterDAO {
     }
     
     public void remove(Appointment appointment) {
-        appointmentDAO.remove(appointment);
+//        appointmentDAO.remove(appointment);
     }
     
     public void add(Employee employee) {
@@ -54,7 +54,7 @@ public class MasterDAO {
     }
     
     public void remove(Employee employee) {
-        employeeDAO.remove(employee);
+//        employeeDAO.remove(employee);
     }
     
     public Appointment getAppointment(int id) {

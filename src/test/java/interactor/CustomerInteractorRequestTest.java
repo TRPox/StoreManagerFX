@@ -5,11 +5,9 @@
  */
 package interactor;
 
-import com.sm.storemanagerfx.commands.CommandFactory;
 import com.sm.storemanagerfx.dao.CustomerDAO;
 import com.sm.storemanagerfx.entity.Customer;
 import com.sm.storemanagerfx.util.InputValidator.InvalidInputException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -31,7 +29,7 @@ public class CustomerInteractorRequestTest {
 
     @Before
     public void setUp() {
-        ci = new CustomerInteractor(customerDAO, new CommandFactory(customerDAO));
+        ci = new CustomerInteractor(customerDAO);
     }
 
     @Test

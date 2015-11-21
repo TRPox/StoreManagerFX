@@ -42,8 +42,8 @@ public class AppointmentDAO implements IDao<Appointment> {
     }
 
     @Override
-    public void remove(Appointment e) {
-        appointmentList.remove(e);
+    public void remove(int id) {
+//        appointmentList.remove(e);
     }
 
     public Appointment findAppointmentById(int id) {

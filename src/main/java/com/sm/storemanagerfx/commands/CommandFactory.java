@@ -6,7 +6,6 @@
 package com.sm.storemanagerfx.commands;
 
 import com.sm.storemanagerfx.dao.CustomerDAO;
-import com.sm.storemanagerfx.entity.Appointment;
 import com.sm.storemanagerfx.entity.Customer;
 
 /**
@@ -15,52 +14,42 @@ import com.sm.storemanagerfx.entity.Customer;
  */
 public class CommandFactory {
 
+    private static CommandFactory instance;
     private static PersonCommandFactory personCommandFactory;
 
-    public CommandFactory(CustomerDAO customerDAO) {
-        CommandFactory.personCommandFactory = new PersonCommandFactory(customerDAO);
-    }
-    
-    public BaseCommand createCommand(CommandType type, Appointment appointment) {
-        switch (type) {
-            case ADD:
-                return createAddCommand();
-            case EDIT:
-                return createEditCommand();
-            case REMOVE:
-                return createRemoveCommand();
-            default:
-                throw new InvalidCommandTypeException();
-        }
+    private CommandFactory(CustomerDAO customerDAO) {
+        personCommandFactory = new PersonCommandFactory(customerDAO);
     }
 
-    public BaseCommand createCommand(CommandType type, Customer entity) {
+    public static CommandFactory createInstance(CustomerDAO customerDAO) {
+        if(instance == null) {
+            instance = new CommandFactory(customerDAO);
+        }
+        return instance;
+    }
+    
+    public static CommandFactory getInstance() {
+        if(instance != null) {
+            return instance;
+        }
+        return null;
+    }
+    
+    public static BaseCommand createCustomerCommand(CommandType type, Customer entity) {
         switch (type) {
             case ADD:
                 return personCommandFactory.createAddCustomerCommand(entity);
             case EDIT:
                 return personCommandFactory.createEditCustomerCommand(entity);
             case REMOVE:
-                return personCommandFactory.createRemoveCustomerCommand(entity);
+                return personCommandFactory.createRemoveCustomerCommand(entity.getId());
             default:
                 throw new InvalidCommandTypeException();
         }
-        
+
     }
 
-    private BaseCommand createAddCommand() {
-        return null;
-    }
-    
-    private BaseCommand createEditCommand() {
-        return null;
-    }
-    
-    private BaseCommand createRemoveCommand() {
-        return null;
-    }
-    
-    public class InvalidCommandTypeException extends RuntimeException {
+    public static class InvalidCommandTypeException extends RuntimeException {
 
         public InvalidCommandTypeException() {
         }

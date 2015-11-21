@@ -9,6 +9,7 @@ import com.sm.storemanagerfx.commands.AddCustomerCommand;
 import com.sm.storemanagerfx.commands.BaseCommand;
 import com.sm.storemanagerfx.commands.CommandFactory;
 import com.sm.storemanagerfx.commands.CommandFactory.CommandType;
+import com.sm.storemanagerfx.commands.RemoveCustomerCommand;
 import com.sm.storemanagerfx.dao.CustomerDAO;
 import com.sm.storemanagerfx.entity.Customer;
 import static org.hamcrest.core.Is.is;
@@ -24,24 +25,26 @@ import org.junit.Test;
 public class CommandFactoryTest {
     
     private CustomerDAO customerDAO;
-    private CommandFactory commandFactory;
     
     
     @Before
     public void setUp() {
         this.customerDAO = new CustomerDAO();
-        this.commandFactory = new CommandFactory(customerDAO);
+        CommandFactory.createInstance(customerDAO);
     }
     
     @Test
     public void givenADDCustomer_shouldReturnAddCustomerCommand() {
-        BaseCommand command = this.commandFactory.createCommand(CommandType.ADD, new Customer());
+        BaseCommand command = CommandFactory.createCustomerCommand(CommandType.ADD, new Customer());
         assertThat(command, is(instanceOf(AddCustomerCommand.class)));
     }
     
     @Test
     public void givenREMOVECustomer_shouldReturnRemoveCustomerCommand() {
-        
+        Customer c = new Customer();
+        c.setId(1);
+        BaseCommand command = CommandFactory.createCustomerCommand(CommandType.REMOVE, c);
+        assertThat(command, is(instanceOf(RemoveCustomerCommand.class)));
     }
     
     private Customer createValidCustomer() {

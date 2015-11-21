@@ -35,9 +35,9 @@ public class CustomerInteractor extends BaseInteractor<Customer> implements ICus
 //        return false;
 //    }
 
-    public CustomerInteractor(CustomerDAO dao, CommandFactory commandFactory) {
+    public CustomerInteractor(CustomerDAO dao) {
         this.dao = dao;
-        this.commandFactory = commandFactory;
+//        this.commandFactory = commandFactory;
     }
     
     @Override
@@ -48,7 +48,7 @@ public class CustomerInteractor extends BaseInteractor<Customer> implements ICus
     @Override
     public void addCustomer(Map<String, Object> dataMap) {
         Customer c = createCustomerFromMap(dataMap);
-        BaseCommand command  = commandFactory.createCommand(CommandType.ADD, c);
+        BaseCommand command  = CommandFactory.createCustomerCommand(CommandType.ADD, c);
         command.execute();
     }
 

@@ -9,9 +9,8 @@ import com.sm.storemanagerfx.commands.BaseCommand;
 import com.sm.storemanagerfx.commands.CommandFactory;
 import com.sm.storemanagerfx.commands.CommandFactory.CommandType;
 import com.sm.storemanagerfx.dao.CustomerDAO;
+import com.sm.storemanagerfx.dao.CustomerDAO.CustomerNotFoundException;
 import com.sm.storemanagerfx.entity.Customer;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,22 +18,27 @@ import org.junit.Test;
  *
  * @author Sven
  */
-public class AddCustomerCommandTest {
- 
+public class RemoveEntityCommandTest {
+    
     private CustomerDAO customerDAO;
     private CommandFactory commandFactory;
+    private Customer customer;
     
     @Before
     public void setUp() {
-        customerDAO = new CustomerDAO();
-        commandFactory = CommandFactory.createInstance(customerDAO);
+        this.customerDAO = new CustomerDAO();
+        this.commandFactory =  CommandFactory.createInstance(customerDAO);
+        this.customer = new Customer();
+        BaseCommand command = commandFactory.createCustomerCommand(CommandType.ADD, customer);
+        command.execute();
     }
     
-    @Test
-    public void callingExectute_shouldAddToDAO() {
+    @Test(expected = CustomerNotFoundException.class)
+    public void givenID_shouldRemoveFromDAO() {
         Customer c = new Customer();
-        BaseCommand addCustomerCommand = commandFactory.createCustomerCommand(CommandType.ADD, c);
-        addCustomerCommand.execute();
-        assertThat(customerDAO.findCustomerById(1), equalTo(c));
+        c.setId(1);
+        BaseCommand command = commandFactory.createCustomerCommand(CommandType.REMOVE, c);
+        command.execute();
+        customerDAO.findCustomerById(1);
     }
 }

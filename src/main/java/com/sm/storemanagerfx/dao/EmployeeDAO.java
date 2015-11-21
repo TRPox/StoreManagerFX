@@ -40,8 +40,8 @@ public class EmployeeDAO implements IDao<Employee>{
     }
 
     @Override
-    public void remove(Employee e) {
-        employeeList.remove(e);
+    public void remove(int id) {
+//        employeeList.remove(e);
     }
     
     public List<Employee> findEmployeesByName(String firstName, String lastName) {

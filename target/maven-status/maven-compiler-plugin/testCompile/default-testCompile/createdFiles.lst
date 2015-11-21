@@ -11,4 +11,5 @@ dao\CustomerDAOTest.class
 dao\AppointmentDAOTest.class
 interactor\CustomerInteractorRequestTest.class
 dao\CustomerDAORejectingTest.class
+commands\RemoveEntityCommandTest.class
 dao\CustomerDAOAcceptingTest.class

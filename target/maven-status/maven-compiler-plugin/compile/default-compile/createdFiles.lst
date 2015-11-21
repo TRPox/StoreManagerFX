@@ -1,3 +1,4 @@
+com\sm\storemanagerfx\commands\RemoveEntityCommand.class
 com\sm\storemanagerfx\commands\CommandFactory.class
 com\sm\storemanagerfx\interfaces\impl\AddedEntityRequestModel.class
 com\sm\storemanagerfx\outputentity\OutputAppointment.class
@@ -37,3 +38,4 @@ com\sm\storemanagerfx\util\EntityMapper.class
 usecases\customerEBI\CustomerInteractor.class
 com\sm\storemanagerfx\commands\BaseCommand.class
 com\sm\storemanagerfx\commands\CommandFactory$CommandType.class
+com\sm\storemanagerfx\commands\RemoveCustomerCommand.class

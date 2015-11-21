@@ -29,8 +29,8 @@ class PersonCommandFactory {
         return null;
     }
     
-    public BaseCommand createRemoveCustomerCommand(Customer person) {
-        return null;
+    public BaseCommand createRemoveCustomerCommand(int id) {
+        return new RemoveCustomerCommand(customerDAO, id);
     }
     
     public BaseCommand createAddPersonCommand(Employee person) {
