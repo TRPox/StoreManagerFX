@@ -6,7 +6,8 @@
 package com.sm.storemanagerfx.commands;
 
 import com.sm.storemanagerfx.dao.CustomerDAO;
-import com.sm.storemanagerfx.entity.Customer;
+import com.sm.storemanagerfx.util.EntityMapper;
+import java.util.Map;
 
 /**
  *
@@ -14,53 +15,64 @@ import com.sm.storemanagerfx.entity.Customer;
  */
 public class CommandFactory {
 
-    private static CommandFactory instance;
-    private static PersonCommandFactory personCommandFactory;
+    private final CustomerDAO customerDAO;
 
-    private CommandFactory(CustomerDAO customerDAO) {
-        personCommandFactory = new PersonCommandFactory(customerDAO);
-    }
-
-    public static CommandFactory createInstance(CustomerDAO customerDAO) {
-        if(instance == null) {
-            instance = new CommandFactory(customerDAO);
-        }
-        return instance;
-    }
+    public CommandFactory(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
+    }    
     
-    public static CommandFactory getInstance() {
-        if(instance != null) {
-            return instance;
-        }
-        return null;
-    }
-    
-    public static BaseCommand createCustomerCommand(CommandType type, Customer entity) {
+    public BaseCommand createAddCommand(EntityType type, Map<String, Object> dataMap) {
         switch (type) {
-            case ADD:
-                return personCommandFactory.createAddCustomerCommand(entity);
-            case EDIT:
-                return personCommandFactory.createEditCustomerCommand(entity);
-            case REMOVE:
-                return personCommandFactory.createRemoveCustomerCommand(entity.getId());
+            case CUSTOMER:
+                return new AddCustomerCommand(customerDAO, EntityMapper.createCustomerFromMap(dataMap));
+            case APPOINTMENT:
+                
+            case EMPLOYEE:
+                
             default:
-                throw new InvalidCommandTypeException();
+                throw new InvalidEntityTypeException();
         }
 
     }
 
-    public static class InvalidCommandTypeException extends RuntimeException {
-
-        public InvalidCommandTypeException() {
+    public BaseCommand createEditCommand(EntityType type, Map<String, Object> dataMap) {
+        switch (type) {
+            case CUSTOMER:
+                return new EditCustomerCommand(customerDAO, EntityMapper.createCustomerFromMap(dataMap));
+            case APPOINTMENT:
+                
+            case EMPLOYEE:
+                
+            default:
+                throw new InvalidEntityTypeException();
         }
+
     }
 
-    public enum CommandType {
+    public BaseCommand createRemoveCommand(EntityType type, Map<String, Object> dataMap) {
+        switch (type) {
+            case CUSTOMER:
+                return new RemoveCustomerCommand(customerDAO, (int) dataMap.get("id"));
+            case APPOINTMENT:
+                
+            case EMPLOYEE:
+                
+            default:
+                throw new InvalidEntityTypeException();
+        }
 
-        ADD,
-        EDIT,
-        REMOVE,
-        ADD_IGNORE_COLLISION,
-        EDIT_IGNORE_COLLISION
+    }
+
+    
+    public static class InvalidEntityTypeException extends RuntimeException {
+
+        public InvalidEntityTypeException() {
+        }
+    }
+    
+    public enum EntityType {
+        CUSTOMER,
+        APPOINTMENT,
+        EMPLOYEE
     }
 }

@@ -6,11 +6,11 @@
 package commands;
 
 import com.sm.storemanagerfx.commands.BaseCommand;
-import com.sm.storemanagerfx.commands.CommandFactory;
-import com.sm.storemanagerfx.commands.CommandFactory.CommandType;
-import com.sm.storemanagerfx.dao.CustomerDAO;
+import com.sm.storemanagerfx.commands.CommandFactory.EntityType;
 import com.sm.storemanagerfx.dao.CustomerDAO.CustomerNotFoundException;
 import com.sm.storemanagerfx.entity.Customer;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,26 +18,21 @@ import org.junit.Test;
  *
  * @author Sven
  */
-public class RemoveEntityCommandTest {
+public class RemoveCustomerCommandTest extends CustomerCommandTest{
     
-    private CustomerDAO customerDAO;
-    private CommandFactory commandFactory;
     private Customer customer;
     
     @Before
-    public void setUp() {
-        this.customerDAO = new CustomerDAO();
-        this.commandFactory =  CommandFactory.createInstance(customerDAO);
-        this.customer = new Customer();
-        BaseCommand command = commandFactory.createCustomerCommand(CommandType.ADD, customer);
+    public void addCustomerToDAO() {
+        BaseCommand command = commandFactory.createAddCommand(EntityType.CUSTOMER, createValidMap());
         command.execute();
     }
     
     @Test(expected = CustomerNotFoundException.class)
     public void givenID_shouldRemoveFromDAO() {
-        Customer c = new Customer();
-        c.setId(1);
-        BaseCommand command = commandFactory.createCustomerCommand(CommandType.REMOVE, c);
+        Map<String, Object> dataMap = new HashMap();
+        dataMap.put("id", 1);
+        BaseCommand command = commandFactory.createRemoveCommand(EntityType.CUSTOMER, dataMap);
         command.execute();
         customerDAO.findCustomerById(1);
     }

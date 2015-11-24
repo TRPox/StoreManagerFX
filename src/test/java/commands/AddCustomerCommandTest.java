@@ -6,35 +6,29 @@
 package commands;
 
 import com.sm.storemanagerfx.commands.BaseCommand;
-import com.sm.storemanagerfx.commands.CommandFactory;
-import com.sm.storemanagerfx.commands.CommandFactory.CommandType;
-import com.sm.storemanagerfx.dao.CustomerDAO;
+import com.sm.storemanagerfx.commands.CommandFactory.EntityType;
 import com.sm.storemanagerfx.entity.Customer;
+import com.sm.storemanagerfx.util.EntityMapper;
+import java.util.HashMap;
+import java.util.Map;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
  *
  * @author Sven
  */
-public class AddCustomerCommandTest {
+public class AddCustomerCommandTest extends CustomerCommandTest {
  
-    private CustomerDAO customerDAO;
-    private CommandFactory commandFactory;
-    
-    @Before
-    public void setUp() {
-        customerDAO = new CustomerDAO();
-        commandFactory = CommandFactory.createInstance(customerDAO);
-    }
-    
     @Test
     public void callingExectute_shouldAddToDAO() {
-        Customer c = new Customer();
-        BaseCommand addCustomerCommand = commandFactory.createCustomerCommand(CommandType.ADD, c);
+        Map<String, Object> dataMap = new HashMap();
+        dataMap.put("id", 1);
+        dataMap.put("firstName", "validFirstName");
+        Customer c = EntityMapper.createCustomerFromMap(dataMap);
+        BaseCommand addCustomerCommand = commandFactory.createAddCommand(EntityType.CUSTOMER , dataMap);
         addCustomerCommand.execute();
-        assertThat(customerDAO.findCustomerById(1), equalTo(c));
+        assertThat(customerDAO.findCustomerById(1).getFirstName(), equalTo("validFirstName"));
     }
 }

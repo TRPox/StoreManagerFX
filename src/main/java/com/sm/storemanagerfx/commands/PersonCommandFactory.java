@@ -15,9 +15,13 @@ import com.sm.storemanagerfx.entity.Employee;
  */
 class PersonCommandFactory {
 
-    private final CustomerDAO customerDAO;
+    private CustomerDAO customerDAO;
     
     public PersonCommandFactory(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
+    }
+
+    public void setCustomerDAO(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
     }
     
@@ -26,7 +30,7 @@ class PersonCommandFactory {
     }
     
     public BaseCommand createEditCustomerCommand(Customer person) {
-        return null;
+        return new EditCustomerCommand(customerDAO, person);
     }
     
     public BaseCommand createRemoveCustomerCommand(int id) {

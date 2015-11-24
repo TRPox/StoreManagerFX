@@ -3,49 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interactor;
+package commands;
 
 import com.sm.storemanagerfx.commands.CommandFactory;
 import com.sm.storemanagerfx.dao.CustomerDAO;
-import com.sm.storemanagerfx.util.InputValidator.InvalidInputException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
 import org.junit.Before;
-import org.junit.Test;
-import usecases.customerEBI.CustomerInteractor;
 
 /**
  *
- * @author Sven
+ * @author marcus
  */
-public class CustomerInteractorRequestTest {
+public class CustomerCommandTest {
 
-    private CustomerInteractor ci;
-    private CustomerDAO customerDAO;
+    protected CustomerDAO customerDAO;
+    protected CommandFactory commandFactory;
     
-
     @Before
     public void setUp() {
         customerDAO = new CustomerDAO();
-        ci = new CustomerInteractor(customerDAO, new CommandFactory(customerDAO));
+        commandFactory = new CommandFactory(customerDAO);
     }
-
-    @Test(expected = InvalidInputException.class)
-    public void givenNull_ShouldThrowInvalidInputException() {
-        ci.addCustomer(null);
-    }
-
-    @Test
-    public void givenValidDataMapToAdd_shouldAddToDAO() {
-            Map<String, Object> map = createValidMap();
-            ci.addCustomer(map);
-            assertThat(customerDAO.findCustomerById(1).getFirstName(), equalTo("validFirstName"));
-    }
-
-    private Map<String, Object> createValidMap() {
+    
+    protected Map<String, Object> createValidMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("id", 1);
         map.put("firstName", "validFirstName");
@@ -58,5 +40,4 @@ public class CustomerInteractorRequestTest {
         map.put("birthday", LocalDate.of(1990, 12, 13));
         return map;
     }
-
 }

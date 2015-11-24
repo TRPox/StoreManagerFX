@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="commands.AddCustomerCommandTest" time="0" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="commands.EditCustomerCommandTest" time="0.001" tests="2" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/jre/lib"/>
@@ -62,5 +62,14 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="callingExectute_shouldAddToDAO" classname="commands.AddCustomerCommandTest" time="0"/>
+  <testcase name="givenCustomer_ShouldEditCustomerWithSameId" classname="commands.EditCustomerCommandTest" time="0"/>
+  <testcase name="t" classname="commands.EditCustomerCommandTest" time="0.001">
+    <failure message="expected:&lt;class java.lang.Integer&gt; but was:&lt;class java.lang.Object&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<class java.lang.Integer> but was:<class java.lang.Object>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at commands.EditCustomerCommandTest.t(EditCustomerCommandTest.java:43)
+]]></failure>
+  </testcase>
 </testsuite>
